@@ -1,0 +1,29 @@
+@use 'src/styles/_variables.scss' as v;
+
+.layout__wrapper {
+    background: v.$grey100;
+    @include v.flexCenter;
+    min-height: 100vh;
+}
+
+.layout__container {
+    background: v.$grey500;
+    max-width: 640px;
+    min-width: 320px;
+    width: 100vw;
+    height: 100vh;
+}
+
+nav {
+    display: flex;
+    border-bottom: 2px solid v.$grey900;
+    padding: 10px;
+    
+    .nav__left{
+        display: flex;
+    }
+}
+
+main {
+    padding: 20px;
+}
