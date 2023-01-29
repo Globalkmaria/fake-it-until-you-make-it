@@ -85,28 +85,35 @@ video {
   font-size: 100%;
 }
 
-
 ol,
 ul {
   list-style: none;
 }
 
-input, select {
-    margin: 0;
+input,
+select {
+  margin: 0;
 }
 
-
 a {
-    color: inherit;
-    text-decoration: none;
-    &:focus-visible {
-      outline-color: transparent;
-    }
+  color: inherit;
+  text-decoration: none;
+  &:focus-visible {
+    outline-color: transparent;
   }
+}
 
 button {
-    margin: 0;
-    background: none;
-    border: 0;
-    cursor: pointer;
+  margin: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+input {
+  background: none;
+
+  &:focus {
+    outline: none;
+  }
 }
