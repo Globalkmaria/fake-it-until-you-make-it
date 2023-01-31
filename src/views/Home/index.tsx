@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useState } from "react";
+import { Link } from "react-router-dom";
 import { getPositiveIntegerUnderMax } from "../../utils/number";
 import "./style.scss";
 
@@ -76,16 +77,20 @@ function Home() {
               {type}
             </button>
           ))}
-          <button
-            className="button button--middle helper"
-            onClick={() => setAmountValue("INFINITY")}
-          >
-            INFINITY
-          </button>
+          {radioValue === "up" && (
+            <button
+              className="button button--middle helper"
+              onClick={() => setAmountValue("INFINITY")}
+            >
+              INFINITY
+            </button>
+          )}
         </div>
       </div>
       <div className="start">
-        <button className="button button--big">START</button>
+        <Link to={`/cards`} className="button button--big">
+          START
+        </Link>
       </div>
     </section>
   );
