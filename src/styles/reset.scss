@@ -110,7 +110,8 @@ button {
   cursor: pointer;
 }
 
-input {
+input,
+textarea {
   background: none;
 
   &:focus {
