@@ -1,9 +1,9 @@
 import React, { ChangeEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { getPositiveIntegerUnderMax } from "../../utils/number";
-import "./style.scss";
+import "./Home.scss";
 
-function Home() {
+export function Home() {
   const [radioValue, setRadioValue] = useState("up");
   const [amountValue, setAmountValue] = useState("");
   const onCountType = (e: ChangeEvent<HTMLInputElement>) => {
@@ -95,7 +95,5 @@ function Home() {
     </section>
   );
 }
-
-export default Home;
 
 const HELPER_TYPES = [1000, 500, 100, 10];

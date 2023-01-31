@@ -2,9 +2,9 @@ import React, { ReactNode } from "react";
 import { Outlet } from "react-router-dom";
 import { GrLanguage } from "react-icons/gr";
 import { BsFonts } from "react-icons/bs";
-import "./style.scss";
+import "./Layout.scss";
 
-function Layout(): ReactNode {
+export function Layout(): ReactNode {
   return (
     <div className="layout__wrapper">
       <div className="layout__container">
@@ -26,5 +26,3 @@ function Layout(): ReactNode {
     </div>
   );
 }
-
-export default Layout;

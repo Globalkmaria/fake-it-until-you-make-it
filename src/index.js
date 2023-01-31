@@ -4,9 +4,10 @@ import "./styles/reset.scss";
 import "./styles/global.scss";
 import "./styles/common.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from "./views/Layout";
-import ErrorPage from "./views/ErrorPage";
-import Home from "./views/Home";
+import { Layout } from "./views/Layout/Layout";
+import { ErrorPage } from "./views/ErrorPage/ErrorPage";
+import { Home } from "./views/Home/Home";
+import { Cards } from "./views/Cards/Cards";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/cards",
+        element: <Cards />,
       },
     ],
   },
