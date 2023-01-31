@@ -1,0 +1,58 @@
+@use "src/styles/_variables.scss" as v;
+
+.cards {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%;
+  padding-top: 20px;
+  overflow-y: hidden;
+}
+
+.count-and-goal {
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: 600;
+
+  .separator {
+    margin: 0 5px;
+  }
+}
+
+.text-slide {
+  background-color: v.$grey300;
+  position: absolute;
+  bottom: -120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 160px;
+  max-width: 400px;
+  padding: 0 20px;
+  width: 60%;
+  border-radius: 5px 5px 0 0;
+  transition: all 500ms ease;
+  @include v.borderDefault;
+
+  .text-slide__move-icon {
+    padding: 10px;
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
+  }
+
+  &.text-slide--up {
+    bottom: -0px;
+  }
+
+  .text {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    overflow: overlay;
+    resize: none;
+    background: v.$grey100;
+    @include v.borderDefault;
+  }
+}
