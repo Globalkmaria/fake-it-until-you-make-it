@@ -1,0 +1,41 @@
+@use "src/styles/_variables.scss" as v;
+
+.card {
+  @include v.boxWrapper;
+  width: 80%;
+  height: 400px;
+  padding: 20px;
+  background: v.$grey100;
+  font-size: 1.3rem;
+  font-weight: 600;
+  transition: ease 500ms all;
+
+  &.fade-out {
+    opacity: 0;
+  }
+}
+
+.card--0 {
+  position: absolute;
+  top: 10px;
+}
+
+.card--1 {
+  position: absolute;
+  top: 20px;
+}
+
+.card--2 {
+  position: absolute;
+  top: 30px;
+}
+
+.card--3 {
+  position: absolute;
+  top: 40px;
+}
+
+.card--4 {
+  position: absolute;
+  top: 50px;
+}

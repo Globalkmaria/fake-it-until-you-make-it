@@ -8,10 +8,23 @@ export function Cards() {
   const [count, setCount] = useState(0);
   const onIncreaseCount = () => setCount((count) => count + 1);
   const [slideUp, setSlideUp] = useState(true);
+  const leftCards = 100 - count;
+  const cardsToShow = leftCards >= 5 ? 5 : leftCards % 5;
+  const cardArray = Array(cardsToShow).fill(0);
 
   return (
     <section className="cards">
-      <Card onIncreaseCount={onIncreaseCount} text={text} />
+      <div className="cards__container">
+        {cardArray.map((_, i) => (
+          <Card
+            onIncreaseCount={onIncreaseCount}
+            text={text}
+            count={count + i}
+            index={i}
+            key={i}
+          />
+        ))}
+      </div>
       <div className="count-and-goal">
         <span className="count">{count}</span>
         <span className="separator">/</span>

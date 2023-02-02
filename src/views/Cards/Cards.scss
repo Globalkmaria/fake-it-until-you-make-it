@@ -10,6 +10,15 @@
   overflow-y: hidden;
 }
 
+.cards__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 500px;
+  align-items: center;
+}
+
 .count-and-goal {
   margin-top: 30px;
   font-size: 20px;
