@@ -25,4 +25,5 @@ $grey000: #f8f9fa;
 
 @mixin boxWrapper {
   @include borderDefault;
+  border-radius: 5px;
 }
