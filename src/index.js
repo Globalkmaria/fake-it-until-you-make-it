@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./styles/reset.scss";
 import "./styles/global.scss";
 import "./styles/common.scss";
+import { RecoilRoot } from "recoil";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Layout } from "./views/Layout/Layout";
 import { ErrorPage } from "./views/ErrorPage/ErrorPage";
@@ -29,6 +30,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RecoilRoot>
+      <RouterProvider router={router} />
+    </RecoilRoot>
   </React.StrictMode>
 );
