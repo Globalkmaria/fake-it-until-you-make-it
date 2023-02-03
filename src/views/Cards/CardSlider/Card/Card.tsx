@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Card.scss";
+import styles from "./Card.module.scss";
 
 type CardProps = {
   onCardClick: () => void;
@@ -27,9 +27,14 @@ export function Card({ onCardClick, text, count, id }: CardProps) {
 
   return (
     <div
-      className={`card ${id} ${cardPositionCss} ${direction} ${
-        fadeOut ? "fade-out" : ""
-      } ${displayNone ? "display-none" : ""}`}
+      className={[
+        styles.card,
+        styles[id],
+        styles[direction],
+        styles[cardPositionCss],
+        styles[fadeOut ? "fade-out" : ""],
+        styles[displayNone ? "display-none" : ""],
+      ].join(" ")}
       onClick={onClick}
     >
       {text}

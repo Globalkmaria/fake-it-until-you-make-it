@@ -4,10 +4,10 @@ export const getOnlyNumberFromString = (value: string): string =>
 export const getPositiveIntegerUnderMax = (
   value: string,
   max: number,
-  defaultValue: string | number
-): string => {
+  defaultValue?: number
+): number => {
   const numberedValue = Number(getOnlyNumberFromString(value));
-  let finalValue = defaultValue;
+  let finalValue = defaultValue || 1;
 
   if (numberedValue > max) {
     finalValue = max;
@@ -15,5 +15,5 @@ export const getPositiveIntegerUnderMax = (
     finalValue = Math.floor(numberedValue);
   }
 
-  return finalValue.toLocaleString() + "";
+  return finalValue;
 };
