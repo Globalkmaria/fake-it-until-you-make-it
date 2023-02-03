@@ -1,29 +1,30 @@
 import React, { ChangeEvent } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { CountTypes, countTypeAtom, isKRAtom } from "../../store/card";
+import { saveCountTypeInLocal } from "../../utils/local";
 import styles from "./Home.module.scss";
 
 type CountTypeProps = {
-  setRadioValue: React.Dispatch<React.SetStateAction<CountTypes>>;
-  radioValue: CountTypes;
+  setCountType: React.Dispatch<React.SetStateAction<CountTypes>>;
+  countType: CountTypes;
 };
 
-export function CountType({ setRadioValue, radioValue }: CountTypeProps) {
+export function CountType({ setCountType, countType }: CountTypeProps) {
   return (
     <div className={styles["count-buttons"]}>
       <div className={styles["count-buttons__container"]}>
         <CountTypeInput
-          radioValue={radioValue}
-          setRadioValue={setRadioValue}
+          countType={countType}
+          setCountType={setCountType}
           type={"up"}
         />
         <CountTypeInput
-          radioValue={radioValue}
-          setRadioValue={setRadioValue}
+          countType={countType}
+          setCountType={setCountType}
           type={"down"}
         />
         <div
-          className={[styles["selected-background"], styles[radioValue]].join(
+          className={[styles["selected-background"], styles[countType]].join(
             " "
           )}
         />
@@ -37,15 +38,16 @@ type CountTypeInputProps = {
 } & CountTypeProps;
 
 export function CountTypeInput({
-  radioValue,
-  setRadioValue,
+  countType,
+  setCountType,
   type,
 }: CountTypeInputProps) {
   const isKR = useRecoilValue(isKRAtom);
-  const setCountType = useSetRecoilState(countTypeAtom);
+  const setCountTypeAtom = useSetRecoilState(countTypeAtom);
   const onCountType = (e: ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value as CountTypes;
-    setRadioValue(value);
+    saveCountTypeInLocal(value);
+    setCountTypeAtom(value);
     setCountType(value);
   };
 
@@ -60,7 +62,7 @@ export function CountTypeInput({
         name="count"
         type="radio"
         value={type}
-        checked={radioValue === type}
+        checked={countType === type}
         onChange={onCountType}
       />
       {countText} <br /> {countTypeText}

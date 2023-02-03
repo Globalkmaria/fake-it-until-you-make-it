@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { goalStateAtom } from "../../../store/card";
+import {
+  getCountLocal,
+  getGoalLocal,
+  saveCountInLocal,
+} from "../../../utils/local";
 import { Card } from "./Card/Card";
 import styles from "./CardsSlider.module.scss";
 
@@ -16,7 +21,10 @@ function CardsSlider({ count, setCount, text }: CardsSliderProps) {
   const goal = useRecoilValue(goalStateAtom);
 
   const [cardsArray, setCardsArray] = useState<number[]>(
-    Array.from({ length: Math.min(goal, 5) }, (_, i) => count + i)
+    Array.from(
+      { length: Math.min(getGoalLocal() - getCountLocal(), 5) },
+      (_, i) => getCountLocal() + i
+    )
   );
 
   const increaseCount = (): void => setCount((count: number) => count + 1);
@@ -31,6 +39,7 @@ function CardsSlider({ count, setCount, text }: CardsSliderProps) {
 
   const onCardClick = (): void => {
     increaseCount();
+    saveCountInLocal(count + 1);
     const moreCardNeeded = count + MAX_CARDS_TO_SHOW < goal;
     if (!moreCardNeeded) return;
     addNextCardInArray();

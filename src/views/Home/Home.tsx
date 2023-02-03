@@ -1,22 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { CountTypes, isKRAtom } from "../../store/card";
+import { CountTypes, goalStateAtom, isKRAtom } from "../../store/card";
 import { AmountInput } from "./AmountInput";
 import { CountType } from "./CountType";
 import { HelperButtons } from "./HelperButtons";
 import styles from "./Home.module.scss";
 import { countTypeAtom } from "../../store/card";
+import {
+  getGoalLocal,
+  saveCountTypeInLocal,
+  saveGoalInLocal,
+} from "../../utils/local";
 
 export function Home() {
+  const navigate = useNavigate();
   const isKR = useRecoilValue(isKRAtom);
-  const setCountType = useSetRecoilState(countTypeAtom);
-  const [radioValue, setRadioValue] = useState<CountTypes>("up");
+  const setCountTypeAtom = useSetRecoilState(countTypeAtom);
+  const goal = useRecoilValue(goalStateAtom);
+  const [countType, setCountType] = useState<CountTypes>("up");
   const [amountValue, setAmountValue] = useState<string>("");
 
   useEffect(() => {
-    setCountType("up");
+    if (getGoalLocal()) {
+      navigate("/cards");
+    }
+
+    setCountTypeAtom("up");
   }, []);
+
+  const onClickStart = () => {
+    saveCountTypeInLocal(countType);
+    saveGoalInLocal(goal);
+    navigate("/cards");
+  };
 
   return (
     <section className={styles.home}>
@@ -27,14 +44,14 @@ export function Home() {
         You Make It
       </h1>
 
-      <CountType setRadioValue={setRadioValue} radioValue={radioValue} />
+      <CountType setCountType={setCountType} countType={countType} />
       <AmountInput setAmountValue={setAmountValue} amountValue={amountValue} />
-      <HelperButtons setAmountValue={setAmountValue} radioValue={radioValue} />
+      <HelperButtons setAmountValue={setAmountValue} countType={countType} />
 
       <div className={styles.start}>
-        <Link to={`/cards`} className="button button--big">
+        <button onClick={onClickStart} className="button button--big">
           {isKR ? "시작" : "START"}
-        </Link>
+        </button>
       </div>
     </section>
   );

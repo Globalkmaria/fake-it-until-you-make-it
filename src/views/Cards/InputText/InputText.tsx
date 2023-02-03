@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { useRecoilValue } from "recoil";
 import { isKRAtom } from "../../../store/card";
+import { saveTextInLocal } from "../../../utils/local";
 import styles from "./InputText.module.scss";
 
 type InputTypeProps = {
@@ -13,6 +14,14 @@ export function InputText({ text, setText }: InputTypeProps) {
   const isKR = useRecoilValue(isKRAtom);
   const [slideUp, setSlideUp] = useState(true);
   const helperText = isKR ? "여기에 작성해주세요..." : "Please write here...";
+
+  const onTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setText(e.target.value);
+  };
+  const onTextareaBlur = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    saveTextInLocal(e.target.value);
+  };
+
   return (
     <div
       className={[
@@ -41,7 +50,8 @@ export function InputText({ text, setText }: InputTypeProps) {
         placeholder={helperText}
         className={styles["text"]}
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={onTextareaChange}
+        onBlur={onTextareaBlur}
       />
     </div>
   );

@@ -1,15 +1,29 @@
 import React, { ReactNode } from "react";
-import { Outlet } from "react-router-dom";
-import { GrLanguage } from "react-icons/gr";
+import { Outlet, useNavigate } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
-import { BsFonts } from "react-icons/bs";
-import { Link } from "react-router-dom";
 import styles from "./Layout.module.scss";
 import { useRecoilState } from "recoil";
 import { isKRAtom } from "../../store/card";
+import {
+  resetLocal,
+  resetTextLocal,
+  saveLanguageInLocal,
+} from "../../utils/local";
 
 export function Layout(): ReactNode {
+  const navigate = useNavigate();
+
   const [isKR, setIsKR] = useRecoilState(isKRAtom);
+  const onLanguageChange = (): void => {
+    saveLanguageInLocal(!isKR);
+    setIsKR(!isKR);
+  };
+
+  const onHomeClick = () => {
+    resetLocal();
+    resetTextLocal();
+    navigate("/");
+  };
 
   return (
     <div className={styles["layout__wrapper"]}>
@@ -17,7 +31,7 @@ export function Layout(): ReactNode {
         <nav>
           <div className={styles["nav__left"]}>
             <button
-              onClick={() => setIsKR((prev) => !prev)}
+              onClick={onLanguageChange}
               className={`button button--small ${styles.language}`}
             >
               {isKR ? "EN" : "한글"}
@@ -27,11 +41,11 @@ export function Layout(): ReactNode {
             </div> */}
           </div>
           <div className={styles["nav__right"]}>
-            <Link to={"/"}>
-              <div className="button button--small">
+            <button onClick={onHomeClick}>
+              <div className={`button button--small ${styles.home}`}>
                 <AiFillHome />
               </div>
-            </Link>
+            </button>
           </div>
         </nav>
         <main>

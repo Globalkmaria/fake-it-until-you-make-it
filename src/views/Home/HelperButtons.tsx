@@ -5,12 +5,12 @@ import styles from "./Home.module.scss";
 
 type HelperButtonsProps = {
   setAmountValue: React.Dispatch<React.SetStateAction<string>>;
-  radioValue: CountTypes;
+  countType: CountTypes;
 };
 
 export function HelperButtons({
   setAmountValue,
-  radioValue,
+  countType,
 }: HelperButtonsProps) {
   const isKR = useRecoilValue(isKRAtom);
   const setGoal = useSetRecoilState(goalStateAtom);
@@ -39,7 +39,7 @@ export function HelperButtons({
             {type}
           </button>
         ))}
-        {radioValue === "up" && (
+        {countType === "up" && (
           <button
             className={`button button--middle ${styles.helper}`}
             onClick={onClickInfinityButton}
