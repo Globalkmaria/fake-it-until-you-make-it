@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from "react";
 import { useSetRecoilState } from "recoil";
-import { CountTypes, countTypeAtom } from "../../../store/card";
-import styles from "../Home.module.scss";
+import { CountTypes, countTypeAtom } from "../../store/card";
+import styles from "./Home.module.scss";
 
 type CountTypeProps = {
   setRadioValue: React.Dispatch<React.SetStateAction<CountTypes>>;

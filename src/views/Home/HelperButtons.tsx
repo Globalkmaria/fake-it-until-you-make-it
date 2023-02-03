@@ -13,6 +13,7 @@ export function HelperButtons({
   radioValue,
 }: HelperButtonsProps) {
   const setGoal = useSetRecoilState(goalStateAtom);
+
   const onAmountHelperClick = (value: number): void => {
     setAmountValue(value.toLocaleString() + "");
     setGoal(value);
