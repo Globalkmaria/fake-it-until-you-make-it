@@ -14,8 +14,9 @@ const MAX_CARDS_TO_SHOW = 5;
 
 function CardsSlider({ count, setCount, text }: CardsSliderProps) {
   const goal = useRecoilValue(goalStateAtom);
+
   const [cardsArray, setCardsArray] = useState<number[]>(
-    Array.from({ length: 6 }, (_, i) => count + i - 1)
+    Array.from({ length: Math.min(goal, 5) }, (_, i) => count + i)
   );
 
   const increaseCount = (): void => setCount((count: number) => count + 1);

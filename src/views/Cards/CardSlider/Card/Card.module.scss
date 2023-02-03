@@ -5,7 +5,7 @@
   z-index: 5;
   opacity: 0;
   position: absolute;
-  top: 50px;
+  top: 100px;
   left: 0px;
   width: 100%;
   height: 400px;
@@ -13,7 +13,7 @@
   background: v.$grey100;
   font-size: 1.3rem;
   font-weight: 600;
-  transition: ease 2000ms all;
+  transition: ease 700ms all;
 
   &.fade-out {
     opacity: 0;
@@ -36,25 +36,25 @@
 .card--4 {
   z-index: 0;
   opacity: 1;
-  top: 10px;
+  top: 20px;
 }
 
 .card--3 {
   z-index: 1;
   opacity: 1;
-  top: 20px;
+  top: 40px;
 }
 
 .card--2 {
   z-index: 2;
   opacity: 1;
-  top: 30px;
+  top: 60px;
 }
 
 .card--1 {
   z-index: 3;
   opacity: 1;
-  top: 40px;
+  top: 80px;
 }
 
 .card--0 {
