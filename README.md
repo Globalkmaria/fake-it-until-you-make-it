@@ -15,8 +15,8 @@ And help them track how many times they repeated.
 
 ## Technologies
 
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=react&logoColor=#61DAFB"  width="100" height="40">
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=typescript&logoColor=#3178C6"  width="100" height="40">
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=sass&logoColor=#CC6699"  width="100" height="40">
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white"  width="100" height="40">
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"  width="100" height="40">
+<img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white"  width="100" height="40">
 
 - Library : Recoil, React-Router
