@@ -18,8 +18,10 @@
 
 nav {
   display: flex;
+  justify-content: space-between;
   border-bottom: 2px solid v.$grey900;
   padding: 10px;
+  font-size: 20px;
 
   .nav__left {
     display: flex;

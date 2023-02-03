@@ -1,7 +1,8 @@
 import React, { ReactNode } from "react";
 import { Outlet } from "react-router-dom";
-import { GrLanguage } from "react-icons/gr";
+import { GrLanguage, GrHomeRounded } from "react-icons/gr";
 import { BsFonts } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import "./Layout.scss";
 
 export function Layout(): ReactNode {
@@ -17,7 +18,13 @@ export function Layout(): ReactNode {
               <BsFonts />
             </div>
           </div>
-          <div className="nav__right"></div>
+          <div className="nav__right">
+            <Link to={"/"}>
+              <div className="button--small">
+                <GrHomeRounded />
+              </div>
+            </Link>
+          </div>
         </nav>
         <main>
           <Outlet />
