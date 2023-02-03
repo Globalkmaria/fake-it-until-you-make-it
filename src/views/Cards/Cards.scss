@@ -7,16 +7,15 @@
   align-items: center;
   min-height: 100%;
   padding-top: 20px;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .cards__container {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
   height: 500px;
-  align-items: center;
 }
 
 .count-and-goal {

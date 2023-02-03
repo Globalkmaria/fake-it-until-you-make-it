@@ -3,25 +3,46 @@ import { Card } from "./Card/Card";
 import "./Cards.scss";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 
+const MAX_CARDS_TO_SHOW = 5;
+const GOAL = 10;
+
 export function Cards() {
-  const [text, setText] = useState("");
-  const [count, setCount] = useState(0);
-  const onIncreaseCount = () => setCount((count) => count + 1);
+  const [text, setText] = useState<string>("");
+  const [count, setCount] = useState<number>(0);
+  const [cardsArray, setCardsArray] = useState<number[]>(
+    Array.from({ length: 6 }, (_, i) => count + i - 1)
+  );
+
   const [slideUp, setSlideUp] = useState(true);
-  const leftCards = 100 - count;
-  const cardsToShow = leftCards >= 5 ? 5 : leftCards % 5;
-  const cardArray = Array(cardsToShow).fill(0);
+  // const leftCardsSum = 100 - count;
+
+  const increaseCount = (): void => setCount((count) => count + 1);
+  const addNextCardInArray = (): void => {
+    setCardsArray((prev) => {
+      const prevLength = prev.length;
+      const nextArrayStartIndex = prevLength > 10 ? 1 : 0;
+
+      return [...prev.slice(nextArrayStartIndex), count + MAX_CARDS_TO_SHOW];
+    });
+  };
+
+  const onCardClick = (): void => {
+    increaseCount();
+    const moreCardNeeded = count + MAX_CARDS_TO_SHOW < GOAL;
+    if (!moreCardNeeded) return;
+    addNextCardInArray();
+  };
 
   return (
     <section className="cards">
       <div className="cards__container">
-        {cardArray.map((_, i) => (
+        {cardsArray.map((id) => (
           <Card
-            onIncreaseCount={onIncreaseCount}
+            onCardClick={onCardClick}
             text={text}
-            count={count + i}
-            index={i}
-            key={i}
+            id={id}
+            count={count}
+            key={id}
           />
         ))}
       </div>
