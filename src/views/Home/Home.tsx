@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import { CountTypes } from "../../store/card";
 import { AmountInput } from "./AmountInput";
 import { CountType } from "./CountType";
 import { HelperButtons } from "./HelperButtons";
 import styles from "./Home.module.scss";
+import { countTypeAtom } from "../../store/card";
 
 export function Home() {
+  const setCountType = useSetRecoilState(countTypeAtom);
   const [radioValue, setRadioValue] = useState<CountTypes>("up");
   const [amountValue, setAmountValue] = useState<string>("");
+
+  useEffect(() => {
+    setCountType("up");
+  }, []);
 
   return (
     <section className={styles.home}>
