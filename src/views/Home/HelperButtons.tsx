@@ -1,6 +1,6 @@
 import React from "react";
-import { useSetRecoilState } from "recoil";
-import { CountTypes, goalStateAtom } from "../../store/card";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { CountTypes, goalStateAtom, isKRAtom } from "../../store/card";
 import styles from "./Home.module.scss";
 
 type HelperButtonsProps = {
@@ -12,6 +12,7 @@ export function HelperButtons({
   setAmountValue,
   radioValue,
 }: HelperButtonsProps) {
+  const isKR = useRecoilValue(isKRAtom);
   const setGoal = useSetRecoilState(goalStateAtom);
 
   const onAmountHelperClick = (value: number): void => {
@@ -23,6 +24,8 @@ export function HelperButtons({
     setAmountValue("INFINITY");
     setGoal(Number.MAX_SAFE_INTEGER);
   };
+
+  const infiniteText = isKR ? "무한" : "INFINITY";
 
   return (
     <div className={styles.amount__helpers}>
@@ -41,7 +44,7 @@ export function HelperButtons({
             className={`button button--middle ${styles.helper}`}
             onClick={onClickInfinityButton}
           >
-            INFINITY
+            {infiniteText}
           </button>
         )}
       </div>

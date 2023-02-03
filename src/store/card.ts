@@ -11,3 +11,8 @@ export const countTypeAtom = atom<CountTypes>({
   key: "countType",
   default: "up",
 });
+
+export const isKRAtom = atom<boolean>({
+  key: "isKR",
+  default: false,
+});

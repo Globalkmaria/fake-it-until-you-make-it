@@ -34,6 +34,10 @@
   &:hover {
     background: v.$grey900;
     color: v.$white;
+    path {
+      fill: v.$white;
+      stroke: v.$white;
+    }
   }
 }
 

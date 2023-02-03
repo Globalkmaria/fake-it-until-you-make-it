@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
-import { useSetRecoilState } from "recoil";
-import { CountTypes, countTypeAtom } from "../../store/card";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { CountTypes, countTypeAtom, isKRAtom } from "../../store/card";
 import styles from "./Home.module.scss";
 
 type CountTypeProps = {
@@ -41,12 +41,17 @@ export function CountTypeInput({
   setRadioValue,
   type,
 }: CountTypeInputProps) {
+  const isKR = useRecoilValue(isKRAtom);
   const setCountType = useSetRecoilState(countTypeAtom);
   const onCountType = (e: ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value as CountTypes;
     setRadioValue(value);
     setCountType(value);
   };
+
+  const countText = isKR ? "카운트" : "count";
+  const countTypeText = isKR ? KR_TYPE[type] : type;
+
   return (
     <label
       className={[styles[`count-${type}`], styles["count-button"]].join(" ")}
@@ -58,7 +63,12 @@ export function CountTypeInput({
         checked={radioValue === type}
         onChange={onCountType}
       />
-      Count <br /> {type}
+      {countText} <br /> {countTypeText}
     </label>
   );
 }
+
+const KR_TYPE = {
+  up: "업",
+  down: "다운",
+};

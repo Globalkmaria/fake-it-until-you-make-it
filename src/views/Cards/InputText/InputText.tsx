@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import { useRecoilValue } from "recoil";
+import { isKRAtom } from "../../../store/card";
 import styles from "./InputText.module.scss";
 
 type InputTypeProps = {
@@ -8,7 +10,9 @@ type InputTypeProps = {
 };
 
 export function InputText({ text, setText }: InputTypeProps) {
+  const isKR = useRecoilValue(isKRAtom);
   const [slideUp, setSlideUp] = useState(true);
+  const helperText = isKR ? "여기에 작성해주세요..." : "Please write here...";
   return (
     <div
       className={[
@@ -34,7 +38,7 @@ export function InputText({ text, setText }: InputTypeProps) {
         )}
       </div>
       <textarea
-        placeholder="Please write here..."
+        placeholder={helperText}
         className={styles["text"]}
         value={text}
         onChange={(e) => setText(e.target.value)}
