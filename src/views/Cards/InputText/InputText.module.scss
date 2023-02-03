@@ -3,7 +3,7 @@
 .text-slide {
   z-index: 100;
   background-color: v.$grey300;
-  position: absolute;
+  position: fixed;
   bottom: -120px;
   display: flex;
   flex-direction: column;
