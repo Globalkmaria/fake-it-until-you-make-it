@@ -2,8 +2,8 @@ import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import styles from "./Layout.module.scss";
-import { useRecoilState } from "recoil";
-import { isKRAtom } from "../../store/card";
+import { useRecoilState, useResetRecoilState } from "recoil";
+import { isKRAtom, goalStateAtom } from "../../store/card";
 import {
   resetLocal,
   resetTextLocal,
@@ -11,6 +11,7 @@ import {
 } from "../../utils/local";
 
 export function Layout() {
+  const resetGoal = useResetRecoilState(goalStateAtom);
   const navigate = useNavigate();
 
   const [isKR, setIsKR] = useRecoilState(isKRAtom);
@@ -22,6 +23,8 @@ export function Layout() {
   const onHomeClick = () => {
     resetLocal();
     resetTextLocal();
+    resetGoal();
+
     navigate("/");
   };
 

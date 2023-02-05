@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./FinishModal.module.scss";
 import { MdOutlineCelebration } from "react-icons/md";
-import { isKRAtom } from "../../../store/card";
-import { useRecoilValue } from "recoil";
+import { goalStateAtom, isKRAtom } from "../../../store/card";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 import { MdCheckBoxOutlineBlank, MdCheckBox } from "react-icons/md";
 import { resetLocal, resetTextLocal } from "../../../utils/local";
 
 export function FinishModal() {
+  const resetGoal = useResetRecoilState(goalStateAtom);
   const navigate = useNavigate();
   const [keepText, setKeepText] = useState(true);
   const isKR = useRecoilValue(isKRAtom);
@@ -23,6 +24,7 @@ export function FinishModal() {
       resetTextLocal();
     }
     resetLocal();
+    resetGoal();
     navigate("/");
   };
 

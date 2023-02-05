@@ -30,6 +30,7 @@ export function Home() {
   }, []);
 
   const onClickStart = () => {
+    if (!goal) return;
     saveCountTypeInLocal(countType);
     saveGoalInLocal(goal);
     navigate("/cards");
