@@ -15,6 +15,7 @@
   font-size: 1.3rem;
   font-weight: 600;
   transition: ease 700ms all;
+  overflow: overlay;
 
   &.fade-out {
     opacity: 0;
