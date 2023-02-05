@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import styles from "./Layout.module.scss";
@@ -10,7 +10,7 @@ import {
   saveLanguageInLocal,
 } from "../../utils/local";
 
-export function Layout(): ReactNode {
+export function Layout() {
   const navigate = useNavigate();
 
   const [isKR, setIsKR] = useRecoilState(isKRAtom);
