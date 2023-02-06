@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import { Language } from "../lang/type";
 
 export type CountTypes = "up" | "down";
 
@@ -12,7 +13,7 @@ export const countTypeAtom = atom<CountTypes>({
   default: "up",
 });
 
-export const isKRAtom = atom<boolean>({
-  key: "isKR",
-  default: false,
+export const LanguageAtom = atom<Language>({
+  key: "Language",
+  default: "EN",
 });

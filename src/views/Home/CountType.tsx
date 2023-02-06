@@ -1,10 +1,11 @@
 import React, { ChangeEvent } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
+import { CountText, CountTypeDown, CountTypeUp } from "../../lang/home";
 import {
   CountTypes,
   countTypeAtom,
-  isKRAtom,
   goalStateAtom,
+  LanguageAtom,
 } from "../../store/card";
 import { saveCountTypeInLocal } from "../../utils/local";
 import styles from "./Home.module.scss";
@@ -65,9 +66,10 @@ export function CountTypeInput({
   countType,
   onCountTypeChange,
 }: CountTypeInputProps) {
-  const isKR = useRecoilValue(isKRAtom);
-  const countText = isKR ? "카운트" : "count";
-  const countTypeText = isKR ? KR_TYPE[type] : type;
+  const language = useRecoilValue(LanguageAtom);
+  const countText = CountText[language];
+  const countTypeText =
+    type === "up" ? CountTypeUp[language] : CountTypeDown[language];
 
   return (
     <label
@@ -84,8 +86,3 @@ export function CountTypeInput({
     </label>
   );
 }
-
-const KR_TYPE = {
-  up: "업",
-  down: "다운",
-};

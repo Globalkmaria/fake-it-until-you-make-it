@@ -1,23 +1,25 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import styles from "./Layout.module.scss";
 import { useRecoilState, useResetRecoilState } from "recoil";
-import { isKRAtom, goalStateAtom } from "../../store/card";
+import { LanguageAtom, goalStateAtom } from "../../store/card";
 import {
   resetLocal,
   resetTextLocal,
   saveLanguageInLocal,
 } from "../../utils/local";
+import { LanguageText } from "../../lang/layout";
 
 export function Layout() {
-  const resetGoal = useResetRecoilState(goalStateAtom);
   const navigate = useNavigate();
-
-  const [isKR, setIsKR] = useRecoilState(isKRAtom);
-  const onLanguageChange = (): void => {
-    saveLanguageInLocal(!isKR);
-    setIsKR(!isKR);
+  const resetGoal = useResetRecoilState(goalStateAtom);
+  const [language, setLanguage] = useRecoilState(LanguageAtom);
+  const onLanguageChange = (e: MouseEvent<HTMLButtonElement>): void => {
+    const isCurrentLanguageKR = language === "KR";
+    const nextLanguage = isCurrentLanguageKR ? "EN" : "KR";
+    saveLanguageInLocal(nextLanguage);
+    setLanguage(nextLanguage);
   };
 
   const onHomeClick = () => {
@@ -28,6 +30,8 @@ export function Layout() {
     navigate("/");
   };
 
+  const languageText = LanguageText[language];
+
   return (
     <div className={styles["layout__wrapper"]}>
       <div className={styles["layout__container"]}>
@@ -35,13 +39,11 @@ export function Layout() {
           <div className={styles["nav__left"]}>
             <button
               onClick={onLanguageChange}
+              id={language}
               className={`button button--small ${styles.language}`}
             >
-              {isKR ? "EN" : "한글"}
+              {languageText}
             </button>
-            {/* <div className="button--small">
-              <BsFonts />
-            </div> */}
           </div>
           <div className={styles["nav__right"]}>
             <button onClick={onHomeClick}>

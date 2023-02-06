@@ -1,7 +1,8 @@
+import { Language } from "../lang/type";
 import { CountTypes } from "../store/card";
 
 const COUNT_TYPE = "count-type";
-const IS_KR = "is-kr";
+const LANGUAGE = "language";
 const GOAL = "goal";
 const COUNT = "count";
 const TEXT = "text";
@@ -11,8 +12,8 @@ const TEXT = "text";
 export const saveCountTypeInLocal = (type: CountTypes) =>
   localStorage.setItem(COUNT_TYPE, type);
 
-export const saveLanguageInLocal = (isKR: boolean) =>
-  localStorage.setItem(IS_KR, isKR + "");
+export const saveLanguageInLocal = (language: Language) =>
+  localStorage.setItem(LANGUAGE, language);
 
 export const saveGoalInLocal = (num: number) =>
   localStorage.setItem(GOAL, num + "");

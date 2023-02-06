@@ -1,6 +1,7 @@
 import React, { ChangeEvent } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { goalStateAtom, isKRAtom } from "../../store/card";
+import { GoalPlaceholder } from "../../lang/home";
+import { goalStateAtom, LanguageAtom } from "../../store/card";
 import { getPositiveIntegerUnderMax } from "../../utils/number";
 import styles from "./Home.module.scss";
 
@@ -10,7 +11,7 @@ type AmountInputProps = {
 };
 
 export function AmountInput({ setAmountValue, amountValue }: AmountInputProps) {
-  const isKR = useRecoilValue(isKRAtom);
+  const language = useRecoilValue(LanguageAtom);
   const setGoal = useSetRecoilState(goalStateAtom);
   const onAmountChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value;
@@ -24,9 +25,7 @@ export function AmountInput({ setAmountValue, amountValue }: AmountInputProps) {
     setAmountValue(finalAmount.toLocaleString());
     setGoal(finalAmount);
   };
-  const placeholder = isKR
-    ? "수량을 입력해 주세요..."
-    : "Please input amount...";
+  const placeholder = GoalPlaceholder[language];
 
   return (
     <input

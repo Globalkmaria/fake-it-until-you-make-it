@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { CountTypes, goalStateAtom, isKRAtom } from "../../store/card";
+import { CountTypes, goalStateAtom, LanguageAtom } from "../../store/card";
 import { AmountInput } from "./AmountInput";
 import { CountType } from "./CountType";
 import { HelperButtons } from "./HelperButtons";
@@ -12,10 +12,11 @@ import {
   saveCountTypeInLocal,
   saveGoalInLocal,
 } from "../../utils/local";
+import { StartText } from "../../lang/home";
 
 export function Home() {
   const navigate = useNavigate();
-  const isKR = useRecoilValue(isKRAtom);
+  const language = useRecoilValue(LanguageAtom);
   const setCountTypeAtom = useSetRecoilState(countTypeAtom);
   const goal = useRecoilValue(goalStateAtom);
   const [countType, setCountType] = useState<CountTypes>("up");
@@ -55,7 +56,7 @@ export function Home() {
 
       <div className={styles.start}>
         <button onClick={onClickStart} className="button button--big">
-          {isKR ? "시작" : "START"}
+          {StartText[language]}
         </button>
       </div>
     </section>

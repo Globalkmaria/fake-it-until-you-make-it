@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { useRecoilValue } from "recoil";
-import { isKRAtom } from "../../../store/card";
+import { GoalTextareaHelper } from "../../../lang/card";
+import { LanguageAtom } from "../../../store/card";
 import { saveTextInLocal } from "../../../utils/local";
 import styles from "./InputText.module.scss";
 
@@ -11,9 +12,9 @@ type InputTypeProps = {
 };
 
 export function InputText({ text, setText }: InputTypeProps) {
-  const isKR = useRecoilValue(isKRAtom);
+  const language = useRecoilValue(LanguageAtom);
   const [slideUp, setSlideUp] = useState(true);
-  const helperText = isKR ? "여기에 작성해주세요..." : "Please write here...";
+  const helperText = GoalTextareaHelper[language];
 
   const onTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
