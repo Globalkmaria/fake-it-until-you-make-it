@@ -20,8 +20,8 @@ export function Cards() {
 
   return (
     <section className={styles.cards}>
-      <CardsSlider count={count} setCount={setCount} text={text} />
       <CountSum count={count} />
+      <CardsSlider count={count} setCount={setCount} text={text} />
       <InputText text={text} setText={setText} />
       {isFinished && <FinishModal />}
     </section>
