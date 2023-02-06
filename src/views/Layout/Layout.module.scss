@@ -8,13 +8,13 @@
 .layout__container {
   @include v.minWidthContainer;
   @include v.borderDefault;
-  background: v.$grey100;
   max-width: 640px;
   width: 100vw;
   min-height: 100vh;
   height: 100%;
   display: flex;
   flex-direction: column;
+  background: v.$grey100;
 }
 
 nav {

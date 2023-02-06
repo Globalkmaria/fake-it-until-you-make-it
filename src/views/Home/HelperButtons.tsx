@@ -21,7 +21,7 @@ export function HelperButtons({
   };
 
   const onClickInfinityButton = () => {
-    setAmountValue("INFINITY");
+    setAmountValue(isKR ? "무한" : "INFINITY");
     setGoal(Number.MAX_SAFE_INTEGER);
   };
 

@@ -1,26 +1,47 @@
 import React, { ChangeEvent } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { CountTypes, countTypeAtom, isKRAtom } from "../../store/card";
+import {
+  CountTypes,
+  countTypeAtom,
+  isKRAtom,
+  goalStateAtom,
+} from "../../store/card";
 import { saveCountTypeInLocal } from "../../utils/local";
 import styles from "./Home.module.scss";
 
 type CountTypeProps = {
+  setAmountValue: React.Dispatch<React.SetStateAction<string>>;
   setCountType: React.Dispatch<React.SetStateAction<CountTypes>>;
   countType: CountTypes;
 };
 
-export function CountType({ setCountType, countType }: CountTypeProps) {
+export function CountType({
+  setCountType,
+  countType,
+  setAmountValue,
+}: CountTypeProps) {
+  const setGoal = useSetRecoilState(goalStateAtom);
+  const setCountTypeAtom = useSetRecoilState(countTypeAtom);
+  const onCountTypeChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    const value = e.target.value as CountTypes;
+    saveCountTypeInLocal(value);
+    setCountTypeAtom(value);
+    setCountType(value);
+    setAmountValue("");
+    setGoal(0);
+  };
+
   return (
     <div className={styles["count-buttons"]}>
       <div className={styles["count-buttons__container"]}>
         <CountTypeInput
+          onCountTypeChange={onCountTypeChange}
           countType={countType}
-          setCountType={setCountType}
           type={"up"}
         />
         <CountTypeInput
+          onCountTypeChange={onCountTypeChange}
           countType={countType}
-          setCountType={setCountType}
           type={"down"}
         />
         <div
@@ -35,22 +56,16 @@ export function CountType({ setCountType, countType }: CountTypeProps) {
 
 type CountTypeInputProps = {
   type: CountTypes;
-} & CountTypeProps;
+  countType: CountTypes;
+  onCountTypeChange: (e: ChangeEvent<HTMLInputElement>) => void;
+};
 
 export function CountTypeInput({
-  countType,
-  setCountType,
   type,
+  countType,
+  onCountTypeChange,
 }: CountTypeInputProps) {
   const isKR = useRecoilValue(isKRAtom);
-  const setCountTypeAtom = useSetRecoilState(countTypeAtom);
-  const onCountType = (e: ChangeEvent<HTMLInputElement>): void => {
-    const value = e.target.value as CountTypes;
-    saveCountTypeInLocal(value);
-    setCountTypeAtom(value);
-    setCountType(value);
-  };
-
   const countText = isKR ? "카운트" : "count";
   const countTypeText = isKR ? KR_TYPE[type] : type;
 
@@ -63,7 +78,7 @@ export function CountTypeInput({
         type="radio"
         value={type}
         checked={countType === type}
-        onChange={onCountType}
+        onChange={onCountTypeChange}
       />
       {countText} <br /> {countTypeText}
     </label>

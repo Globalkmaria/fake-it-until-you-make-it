@@ -45,7 +45,11 @@ export function Home() {
         You Make It
       </h1>
 
-      <CountType setCountType={setCountType} countType={countType} />
+      <CountType
+        setAmountValue={setAmountValue}
+        setCountType={setCountType}
+        countType={countType}
+      />
       <AmountInput setAmountValue={setAmountValue} amountValue={amountValue} />
       <HelperButtons setAmountValue={setAmountValue} countType={countType} />
 
