@@ -17,13 +17,14 @@
   justify-content: center;
 
   &__container {
+    @include v.minWidthContainer;
     @include v.borderDefault;
     border-radius: 5px;
     position: relative;
     display: flex;
     margin-top: 30px;
     height: 70px;
-    width: 280px;
+    // width: 280px;
   }
 
   .count-button {
@@ -38,10 +39,11 @@
   }
 
   .selected-background {
+    width: calc(50%);
     position: absolute;
     top: 0;
     left: 0;
-    width: 140px;
+    // width: 140px;
     height: 100%;
     background: black;
     transition: left 300ms linear;
@@ -59,9 +61,10 @@
 }
 
 .amount {
+  @include v.minWidthContainer;
   margin: 0 auto;
   margin-top: 35px;
-  width: 280px;
+  // width: 280px;
   height: 150px;
   text-align: center;
   font-size: 2rem;

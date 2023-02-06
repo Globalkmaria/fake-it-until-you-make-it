@@ -27,3 +27,9 @@ $grey000: #f8f9fa;
   @include borderDefault;
   border-radius: 5px;
 }
+
+@mixin minWidthContainer {
+  min-width: 260px;
+  max-width: 280px;
+  width: 100%;
+}
