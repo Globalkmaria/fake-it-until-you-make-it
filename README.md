@@ -5,6 +5,14 @@ You can try the project.
 - Project Link: <https://fakeituntilyou-makeit.netlify.app/>
 - Project Link: <https://fakeituntilyoumakeit.shop/>
 
+## Table of contents
+
+- [About](#About)
+- [Project duration](#Project-duration)
+- [Stack](#Stack)
+- [What is Fake it until you make it?](#What-is-Fake-it-until-you-make-it)
+- [Snapshot](#Snapshot)
+
 # About
 
 Repeating an affirmation several times keeps people focused on their goals.
@@ -23,6 +31,16 @@ And help them track how many times they repeated.
 <img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white" height="40">
 </div>
 - React, Typescript, Sass, Recoil, React-Router
+
+## What is Fake it until you make it ?
+
+With 'Fake it until you make it'
+
+- Count down or count up
+- Write down your goal and show it on the card
+- Support English and Korean
+- Responsive Web, so that you can use it with other devices other than Desktop
+- Keep your last state. You can start from where you finished last time. (Used local storage to save current state)
 
 ## Snapshot
 
